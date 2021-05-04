@@ -25,7 +25,7 @@ class RestaurantServiceTest {
     //>>>>>>>>>>>>>>>>>>>>>>SEARCHING<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test
     public void searching_for_existing_restaurant_should_return_expected_restaurant_object() throws restaurantNotFoundException {
-        Assertions.assertEquals(restaurant, service.findRestaurantByName("Amelie's cafe"));
+        Assertions.assertEquals(restaurant.getName(), service.findRestaurantByName("Amelie's cafe").getName());
     }
 
     //You may watch the video by Muthukumaran on how to write exceptions in Course 3: Testing and Version control: Optional content
@@ -59,18 +59,4 @@ class RestaurantServiceTest {
     }
     //<<<<<<<<<<<<<<<<<<<<ADMIN: ADDING & REMOVING RESTAURANTS>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-    @Test
-    public void calculate_total_of_selected_menu_items_after_searching_for_restaurant() throws  itemNotFoundException, restaurantNotFoundException{
-        service.findRestaurantByName("Amelie's cafe");
-        int total = service.selectMenu("Sweet corn soup");
-        assertEquals(total, 119);
-        total = service.selectMenu("Vegetable lasagne");
-        assertEquals(total, 388);
-    }
-
-    @Test
-    public void calculate_total_of_selected_menu_items_after_searching_for_restaurant_throws_item_not_found_if_item_not_present_in_restaurant_menu() throws  itemNotFoundException, restaurantNotFoundException{
-        service.findRestaurantByName("Amelie's cafe");
-        assertThrows(itemNotFoundException.class, ()->{service.selectMenu("Chicken soup");});
-    }
 }

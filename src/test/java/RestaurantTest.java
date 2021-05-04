@@ -2,10 +2,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -62,20 +59,14 @@ class RestaurantTest {
     //<<<<<<<<<<<<<<<<<<<<<<<Total calculation>>>>>>>>>>>>>>>>
     @Test
     public void calculate_total_of_existing_menu_item() throws itemNotFoundException{
-        List<String> selectedMenu = new ArrayList<>();
-        selectedMenu.add("Sweet corn soup");
-        selectedMenu.add("Vegetable lasagne");
-        assertEquals(restaurant.calculateTotal(selectedMenu), 388);
+        assertEquals(restaurant.setSelectedMenu("Sweet corn soup"), 119);
+        assertEquals(restaurant.setSelectedMenu("Vegetable lasagne"), 388);
     }
 
     @Test
     public void calculate_total_of_non_existing_menu_item_should_throw_exception() throws itemNotFoundException{
-        List<String> selectedMenu = new ArrayList<>();
-        selectedMenu.add("Sweet corn soup");
-        selectedMenu.add("Vegetable lasagne");
-        selectedMenu.add("French fries");
         assertThrows(itemNotFoundException.class, () -> {
-            restaurant.calculateTotal(selectedMenu);
+            restaurant.setSelectedMenu("French fries");
         });
     }
     //<<<<<<<<<<<<<<<<<<<<<<<Total calculation>>>>>>>>>>>>>>>>

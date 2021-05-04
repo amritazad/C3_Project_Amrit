@@ -5,10 +5,9 @@ import java.util.List;
 
 public class RestaurantService {
     private static List<Restaurant> restaurants = new ArrayList<>();
-    private static Restaurant selectedRestaurant;
-    private static List<String> selectedMenu = new ArrayList<>();
     public Restaurant findRestaurantByName(String restaurantName) throws restaurantNotFoundException{
         Iterator<Restaurant> i = restaurants.iterator();
+        Restaurant selectedRestaurant;
         while (i.hasNext()) {
             selectedRestaurant = i.next();
             if (selectedRestaurant.getName().equals(restaurantName))
@@ -35,9 +34,6 @@ public class RestaurantService {
     }
 
 
-    public int selectMenu(String menuItem) throws itemNotFoundException{
-        selectedMenu.add(menuItem);
-        return selectedRestaurant.calculateTotal(selectedMenu);
-    }
+
 
 }
